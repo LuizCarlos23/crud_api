@@ -6,16 +6,16 @@ const userResearchController = (req, res) => {
 	let searchFor = req.body.searchFor,
 		value = req.body.value
 	if (acceptableValues.indexOf(searchFor) == -1){ 
-		return res.status(400).send({msg: "Unacceptable value"})
+		return res.status(400).send(JSON.stringify({"msg": "Unacceptable value"}))
 	}
 	
 	searchUser(searchFor, value).
 		then((result) => {
-			return res.status(200).send(result);
+			return res.status(200).send(JSON.stringify(result));
 		}).
 		catch((err) => {
 			console.log(err)
-			return res.status(400).send(err);
+			return res.status(400).send(JSON.stringify(err));
 		})
 }
 

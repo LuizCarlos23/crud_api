@@ -5,10 +5,10 @@ const controllerDeleteUser = (req, res) => {
 	let id = req.body.id;
 	deleteUser(id).
 		then((result) => {
-			return res.status(200).send(result["msg"]);
+			return res.status(200).send(JSON.stringify({"msg":result["msg"]}));
 		}).
 		catch((err) => {
-			return res.status(400).send(err["msg"]);
+			return res.status(400).send(JSON.stringify({"msg":err["msg"]}));
 		});
 }
 

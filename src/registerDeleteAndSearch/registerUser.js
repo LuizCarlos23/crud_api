@@ -3,7 +3,7 @@ const registerUser = (name, age, rg, cpf) => {
 	let query = `INSERT INTO users (name, age, rg, cpf) VALUES (?,?,?,?)`
 	let sql = new Promise ((resolve, reject) => {
 		connection.query(query,[name, age, rg, cpf], (err, result, fields)=> {
-			if (err) return reject({error: err, msg: "Error while ao deleting"})
+			if (err) return reject({error: err, msg: "Error registering"})
 			return resolve({error: err, msg: "It Okay"})
 		})
 	})

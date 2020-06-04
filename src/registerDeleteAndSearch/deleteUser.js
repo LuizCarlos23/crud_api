@@ -4,7 +4,7 @@ const deleteUser = (id) => {
 	let sql = new Promise ((resolve, reject) => {
 		connection.query(query, [id], (err, result, fields) => {
 			if (!result.affectedRows) return reject({error: err, msg: "Does not exist"})
-			if (err) return reject({error: err, msg: "Error while ao deleting"})
+			if (err) return reject({error: err, msg: "Error while deleting"})
 			return resolve({error: err, msg: "It Okay"})
 		})
 	})
