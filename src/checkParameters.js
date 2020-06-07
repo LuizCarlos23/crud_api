@@ -3,6 +3,7 @@ function checkParameters(params){
 	let scanResults = {
 		checkKeys: checkKeys(params),
 		allIsString: allIsString(Object.values(params)),
+		checkRg: checkRg(params.rg),
 		checkCPF: checkCPF(params.cpf)
 	}
 	let result = checkResults(scanResults)
@@ -69,10 +70,18 @@ function checkCPF(cpf){
 	if ( !scanResult ){ return false }
 
 	return true
+
+}
+
+function checkRg(rg){
+	if (!Number.isInteger(parseInt(rg))) return false
+	if (rg.length != 9) return false
+	return true
 }
 
 function checkResults(scanResults){
 	let result = {error: true, msg: undefined, scanResults}
+	
 	if(!scanResults.checkKeys){
 		result["msg"] = "Invalid keys"
 		return result
@@ -81,6 +90,9 @@ function checkResults(scanResults){
 		return result
 	} else if (!scanResults.checkCPF){ 
 		result["msg"] = "Invalid CPF"
+		return result
+	} else if (!scanResults.checkRg){
+		result["msg"] = "Invalid Rg"
 		return result
 	} else {
 		result["error"] = false
